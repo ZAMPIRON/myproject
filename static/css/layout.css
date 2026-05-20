@@ -1,0 +1,157 @@
+/* HEADER */
+.brand-logo {
+    font-size: 1.1rem;
+    letter-spacing: 0.3px;
+    font-weight: 700;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    background-color: var(--header-color);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--light);
+}
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 0, 10px;
+}
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+}
+nav h3 {
+    text-align: center;
+    color: var(--white);
+    align-items: center;
+    justify-content: center;
+}
+nav img {
+    height: 30px;
+    margin-right: 10px;
+}
+nav .itens {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    font-weight: bold;
+}
+/* ================================================================================ */
+/* error */
+.error {
+    margin: 20px auto;
+    padding: 15px;
+    border: 1px solid red;
+    background-color: #ffe6e6;
+    color: red;
+    width: 80%;
+    text-align: center;
+}
+
+/* FOOTER */
+footer {
+    background-color: var(--header-color);
+    color: var(--light);
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+/* ================================================================================ */
+/* MAIN */
+main {
+    max-width: 1200px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.hero {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.hero h1 {
+    font-size: 2.5rem;
+    color: var(--harvard-crimson);
+    margin-bottom: 20px;
+}
+.hero p {
+    font-size: 1rem;
+    color: var(--harvard-black);
+}
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+.join-in {
+    background-color: var(--harvard-crimson);
+    color: var(--white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.log-in {
+    background-color: var(--harvard-black);
+    color: var(--white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.cards div {
+    background-color: var(--light);
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+/* ICONS */
+.cards div i {
+    font-size: 10rem;
+    color: var(--harvard-crimson);
+}
+.cards div h3 {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    color: var(--harvard-black);
+    font-size: 1.5rem;
+}
+.cards div p {
+    font-size: 1rem;
+    margin-bottom: 50px;
+}
+hr {
+    margin: 40px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+/* Hover effects*/
+.cards div:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+.actions a:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
