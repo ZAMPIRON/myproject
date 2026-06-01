@@ -1,0 +1,101 @@
+{% extends "index.html" %}
+{% block content %}
+    <header class="page-intro">
+        <h2 class="title"><i class="bi bi-search"></i> Find Your Project Partner</h2>
+        <p class="subtitle">Match with someone in your timezone or who speaks your language.</p>
+    </header>
+
+    <form action="/matches" method="get" class="search-filters">
+        <div class="filters-group">
+            <div class="filter-field">
+                <label class="filter-label" for="tz-select">
+                    <i class="bi bi-clock"></i> Timezone
+                </label>
+                <select class="filter-select" id="tz-select" name="timezone">
+                    <option value="">Any timezone</option>
+                    {% for tz in timezones %}
+                        <option value="{{ tz }}" {% if filter_timezone == tz %}selected{% endif %}>{{ tz }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="filter-field">
+                <label class="filter-label" for="idea-select">
+                    <i class="bi bi-lightbulb"></i> Has a project idea?
+                </label>
+                <select class="filter-select" id="idea-select" name="idea">
+                    <option value="">Doesn't matter</option>
+                    <option value="yes" {% if filter_idea == 'yes' %}selected{% endif %}>Yes, I have an idea</option>
+                    <option value="no" {% if filter_idea == 'no' %}selected{% endif %}>No, looking to join</option>
+                </select>
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="button-submit" type="submit" title="Apply filters">
+                    <i class="bi bi-funnel"></i>
+                </button>
+                <a href="/matches" class="button-clear" title="Clear filters">
+                    <i class="bi bi-x"></i>
+                </a>
+            </div>
+        </div>
+    </form>
+
+    {% if users %}
+        <p class="results-count">
+            <strong>{{ users | length }}</strong> potential partner{{ 's' if users | length != 1 }} ready to collaborate!
+        </p>
+        
+        <div class="user-grid">
+            {% for u in users %}
+            <div class="user-card">
+                <div class="card-content">
+                    <div class="card-top">
+                        <i class="bi bi-github"></i>
+                        <div class="user-details">
+                            <h6 class="username">
+                                <a href="/user/{{ u.github }}">@{{ u.github }}</a>
+                            </h6>
+                            <small class="timezone"><i class="bi bi-clock"></i>{{ u.timezone }}</small>
+                        </div>
+                        <div class="user-status">
+                            {% if u.has_idea == 'yes' %}
+                                <span class="badge-idea">
+                                    <i class="bi bi-lightbulb-fill"></i> Has idea
+                                </span>
+                            {% else %}
+                                <span class="badge-join">
+                                    <i class="bi bi-person-raised-hand"></i> Wants to join
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <p class="user-bio">
+                        {% if u.pitch %}
+                            &ldquo;{{ u.pitch}}&rdquo;
+                        {% else %}
+                            Still brainstorming ideas! Feel free to say hi.
+                        {% endif %}
+                    </p>
+                </div>
+                
+                <div class="card-buttons">
+                    <a href="https://github.com/{{ u.github }}" target="_blank" rel="noopener" class="button-github">
+                        <i class="bi bi-github"></i> GitHub
+                    </a>
+                    <a href="/user/{{ u.github }}" class="button-profile">
+                        <i class="bi bi-person"></i> Profile
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <i class="bi bi-emoji-smile"></i>
+            <p class="empty-text">Looks a bit quiet here. Try clearing your filters to see more people!</p>
+            <a href="/matches" class="button-clear-state">Clear filters</a>
+        </div>
+    {% endif %}
+{% endblock %}

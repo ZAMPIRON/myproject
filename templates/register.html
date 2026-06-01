@@ -1,0 +1,122 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="login-container">
+    <div class="login-box">
+        
+        <h2 class="login-title">
+            <i class="bi bi-box-arrow-in-right login-icon"></i>Register
+        </h2>
+        <p class="login-subtitle">Create an account to get started</p>
+
+       <form action="/register" method="post" class="login-form">
+    
+            {% if error %}
+            <div class="error" role="alert">
+                <i class="bi bi-exclamation-triangle"></i> {{ error }}
+            </div>
+            {% endif %}
+
+            <div class="form-group">
+                {% if error %}
+                    <div id="error-alert" class="error-alert">
+                        <i class="bi bi-exclamation-triangle-fill"></i> {{ error }}
+                    </div>
+                {% endif %}
+                <label class="form-label" for="github">GitHub Username</label>
+                <div class="input-wrapper">
+                    <span class="input-icon"><i class="bi bi-github"></i></span>
+                    <input class="form-input" type="text" id="github" name="github" placeholder="Your GitHub username" required />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="password">Password</label>
+                <div class="input-wrapper">
+                    <span class="input-icon"><i class="bi bi-lock"></i></span>
+                    <input class="form-input" type="password" id="password" name="password" placeholder="Create a password" autocomplete="current-password" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="timezone">Your Timezone (UTC offset)</label>
+                <select class="form-select" id="timezone" name="country" required>
+                    <option value="">-- Select your timezone --</option>
+                    <option value="UTC-12">UTC-12 (Baker Island)</option>
+                    <option value="UTC-11">UTC-11 (American Samoa)</option>
+                    <option value="UTC-10">UTC-10 (Hawaii)</option>
+                    <option value="UTC-9">UTC-9 (Alaska)</option>
+                    <option value="UTC-8">UTC-8 (Pacific US)</option>
+                    <option value="UTC-7">UTC-7 (Mountain US)</option>
+                    <option value="UTC-6">UTC-6 (Central US)</option>
+                    <option value="UTC-5">UTC-5 (Eastern US / Bogotá)</option>
+                    <option value="UTC-4">UTC-4 (Atlantic / Caracas)</option>
+                    <option value="UTC-3">UTC-3 (São Paulo / Buenos Aires)</option>
+                    <option value="UTC-2">UTC-2 (Mid-Atlantic)</option>
+                    <option value="UTC-1">UTC-1 (Azores)</option>
+                    <option value="UTC+0">UTC+0 (London / Lisbon)</option>
+                    <option value="UTC+1">UTC+1 (Paris / Berlin / Lagos)</option>
+                    <option value="UTC+2">UTC+2 (Cairo / Johannesburg)</option>
+                    <option value="UTC+3">UTC+3 (Moscow / Nairobi)</option>
+                    <option value="UTC+4">UTC+4 (Dubai / Baku)</option>
+                    <option value="UTC+5">UTC+5 (Karachi / Tashkent)</option>
+                    <option value="UTC+5:30">UTC+5:30 (India)</option>
+                    <option value="UTC+6">UTC+6 (Dhaka / Almaty)</option>
+                    <option value="UTC+7">UTC+7 (Bangkok / Jakarta)</option>
+                    <option value="UTC+8">UTC+8 (Beijing / Singapore)</option>
+                    <option value="UTC+9">UTC+9 (Tokyo / Seoul)</option>
+                    <option value="UTC+10">UTC+10 (Sydney / Melbourne)</option>
+                    <option value="UTC+11">UTC+11 (Solomon Islands)</option>
+                    <option value="UTC+12">UTC+12 (Auckland / Fiji)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Do you have a project idea?</label>
+                <div class="form-chekbox-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="has_idea"
+                               id="idea-yes" value="yes" />
+                        <label class="form-check-label" for="idea-yes">
+                            <i class="bi bi-lightbulb-fill text-warning me-1"></i>Yes, I have an idea
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="has_idea"
+                               id="idea-no" value="no" checked />
+                        <label class="form-check-label" for="idea-no">
+                            <i class="bi bi-question-circle me-1"></i>Looking to join someone
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn-submit" type="submit">Register</button>
+            
+        </form>
+
+        <p class="register-text">
+            Already have an account? <a href="/login" class="register-link">Log in here</a>
+        </p>
+        
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Find the error alert box
+        const errorAlert = document.getElementById('error-alert');
+        
+        if (errorAlert) {
+            // If the error exists, wait for 4 seconds (4000 milliseconds)
+            setTimeout(() => {
+                // Make it transparent and move it up slightly
+                errorAlert.style.opacity = '0';
+                errorAlert.style.transform = 'translateY(-10px)';
+                
+                // Remove the element from the DOM after the transition ends (500ms)
+                setTimeout(() => errorAlert.remove(), 500); 
+            }, 4000);
+        }
+    });
+</script>
+{% endblock %}

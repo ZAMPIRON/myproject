@@ -14,6 +14,8 @@ body {
 }
 :root {
     --harvard-crimson: #A51C30; /* The main Crimson color */
+    --harvard-crimson-dark: #7A0B1E; /* A darker shade for hover effects */
+    --medium-gray: #6b7280; /* A medium gray for text and borders */
     --harvard-black: #1E1E1E;   /* Deep charcoal for text */
     --light: #fadddd;        /* Clean background color */
     --white: #FFFFFF;

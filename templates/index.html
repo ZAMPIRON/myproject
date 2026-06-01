@@ -4,7 +4,7 @@
 
     <title>Buddy Matcher</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="static/css/linking.css">
+    <link rel="stylesheet" href="/static/css/linking.css">
     
 </head>
 <body>
@@ -12,7 +12,7 @@
     <nav>
         <div class="content">
             <a href="/" class="logo">
-                <img src="static/assets/harvard-logo.png" alt="Harvard Logo">
+                <img src="/static/assets/harvard-logo.png" alt="Harvard Logo">
                 <h3>Buddy Matcher</h3>
             </a>
             
@@ -31,43 +31,44 @@
     </nav>
 
     <main>
-        
-        <section class="hero">
-            <h1>Find Your CS50 Final Project Partner</h1>
-            <p>
-                CS50x is taken by thousands of students worldwide. Now you can find classmates
-                in your country who share your interests and team up for the final project.
-            </p>
-            <div class="actions">
-                <a href="/register" class="join-in">Join Now</a>
-                <a href="/login" class="log-in">Log In</a>
-            </div>
-        </section>
+        {% block content %}
+    
+            <section class="hero">
+                <h1>Find Your CS50 Final Project Partner</h1>
+                <p>
+                    CS50x is taken by thousands of students worldwide. Now you can find classmates
+                    in your country who share your interests and team up for the final project
+                </p>
+                <div class="actions">
+                    <a href="/register" class="join-in">Join Now</a>
+                    <a href="/login" class="log-in">Log In</a>
+                </div>
+            </section>
 
-        <hr>
+            <hr>
 
-        <section class="cards">
-            
-            <div>
-                <i class="bi bi-bookmark-star"></i>
-                <h3>Create Your Profile</h3>
-                <p>Register with your account name and country.</p>
-            </div>
+            <section class="cards">
+                
+                <div>
+                    <i class="bi bi-bookmark-star"></i>
+                    <h3>Create Your Profile</h3>
+                    <p>Register with your account name and country</p>
+                </div>
 
-            <div>
-                <i class="bi bi-chat-dots"></i>
-                <h3>Post Your Pitch</h3>
-                <p>Share your project idea in 280 characters or let others know you're looking for a team to join.</p>
-            </div>
+                <div>
+                    <i class="bi bi-chat-dots"></i>
+                    <h3>Post Your Pitch</h3>
+                    <p>Share your project idea let others know that you're looking for a team to join</p>
+                </div>
 
-            <div>
-                <i class="bi bi-search"></i>
-                <h3>Find Your Match</h3>
-                <p>Filter students by country and idea status to find the perfect project partner.</p>
-            </div>
+                <div>
+                    <i class="bi bi-search"></i>
+                    <h3>Find Your Match</h3>
+                    <p>Filter students by country, idea and status to find the perfect project partner</p>
+                </div>
 
-        </section>
-
+            </section>
+        {% endblock %}
     </main>
 
     <footer>

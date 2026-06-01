@@ -1,0 +1,75 @@
+{% extends "index.html" %}
+{% block content %}
+
+<section class="profile-container">
+    
+    <header class="page-intro">
+        <h2 class="title">
+            <i class="bi bi-person-gear text-primary" style="color: var(--harvard-crimson);"></i> My Profile
+        </h2>
+        <p class="subtitle">Update your timezone and idea status.</p>
+    </header>
+
+    <div class="github-info-box">
+        <i class="bi bi-github github-icon"></i>
+        <div class="github-details">
+            <div class="github-username">@{{ user.github }}</div>
+            <a href="https://github.com/{{ user.github }}" target="_blank" rel="noopener" class="github-link">
+                github.com/{{ user.github }} <i class="bi bi-box-arrow-up-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <form action="/profile" method="post" class="profile-form">
+        
+        <div class="form-group">
+            <label class="form-label" for="timezone">Timezone</label>
+            <select class="form-select" id="timezone" name="country" required>
+                <option value="">-- Select your timezone --</option>
+                {% for tz in [
+                    "UTC-12","UTC-11","UTC-10","UTC-9","UTC-8","UTC-7","UTC-6",
+                    "UTC-5","UTC-4","UTC-3","UTC-2","UTC-1","UTC+0","UTC+1",
+                    "UTC+2","UTC+3","UTC+4","UTC+5","UTC+5:30","UTC+6","UTC+7",
+                    "UTC+8","UTC+9","UTC+10","UTC+11","UTC+12"
+                ] %}
+                    <option value="{{ tz }}" {% if user.timezone == tz %}selected{% endif %}>{{ tz }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Do you have a project idea?</label>
+            <div class="form-checkbox-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="has_idea" id="idea-yes" value="yes" 
+                           {% if user.has_idea == 'yes' %}checked{% endif %} />
+                    <label class="form-check-label" for="idea-yes">
+                        <i class="bi bi-lightbulb-fill text-warning" style="margin-right: 5px;"></i> Yes, I have an idea
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="has_idea" id="idea-no" value="no" 
+                           {% if user.has_idea == 'no' %}checked{% endif %} />
+                    <label class="form-check-label" for="idea-no">
+                        <i class="bi bi-question-circle" style="margin-right: 5px;"></i> Looking to join someone
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-submit" type="submit">
+            <i class="bi bi-floppy"></i> Save Changes
+        </button>
+    </form>
+
+    <hr class="profile-divider" />
+    
+    <div class="profile-actions">
+        <a href="/pitch" class="btn-outline-warning">
+            <i class="bi bi-lightbulb"></i> Edit My Pitch
+        </a>
+    </div>
+
+</section>
+
+{% endblock %}

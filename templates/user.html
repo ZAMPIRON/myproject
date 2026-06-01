@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+{% block content %}
+
+<section class="public-profile-container">
+    
+    <div class="profile-header-actions">
+        <a href="/matches" class="btn-back">
+            <i class="bi bi-arrow-left"></i> Back to Matches
+        </a>
+    </div>
+
+    <div class="user-card public-profile-card">
+        <div class="card-content">
+            
+            <div class="profile-top">
+                <i class="bi bi-github profile-avatar"></i>
+                <div class="profile-info">
+                    <h3 class="username-large">{{ user.github }}</h3>
+                    <a href="https://github.com/{{ user.github }}" target="_blank" rel="noopener" class="github-link">
+                        github.com/{{ user.github }} <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                </div>
+                
+                <div class="user-status">
+                    {% if user.has_idea == 'yes' %}
+                        <span class="badge-idea">
+                            <i class="bi bi-lightbulb-fill"></i> Has idea
+                        </span>
+                    {% else %}
+                        <span class="badge-join">
+                            <i class="bi bi-person-raised-hand"></i> Looking to join
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <hr class="profile-divider" />
+
+            <div class="profile-details">
+                <div class="detail-item">
+                    <span class="detail-label"><i class="bi bi-clock"></i> TIMEZONE</span>
+                    <span class="detail-value">{{ user.country }}</span>
+                </div>
+            </div>
+
+            <div class="profile-pitch-section">
+                <span class="detail-label"><i class="bi bi-chat-quote"></i> PROJECT PITCH</span>
+                
+                {% if user.pitch %}
+                    <blockquote class="pitch-quote">
+                        <p>&ldquo;{{ user.pitch }}&rdquo;</p>
+                    </blockquote>
+                {% else %}
+                    <p class="empty-pitch">No pitch posted yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

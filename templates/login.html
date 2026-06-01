@@ -1,4 +1,4 @@
-{extend "index.html"}
+{% extends "index.html" %}
 {% block content %}
 
 <div class="login-container">
@@ -12,6 +12,11 @@
         <form action="/login" method="post" class="login-form">
             
             <div class="form-group">
+                {% if error %}
+                    <div id="error-alert" class="error-alert">
+                        <i class="bi bi-exclamation-triangle-fill"></i> {{ error }}
+                    </div>
+                {% endif %}
                 <label class="form-label" for="github">GitHub Username</label>
                 <div class="input-wrapper">
                     <span class="input-icon"><i class="bi bi-github"></i></span>
@@ -34,3 +39,22 @@
         
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Find the error alert box
+        const errorAlert = document.getElementById('error-alert');
+        
+        if (errorAlert) {
+            // If the error exists, wait for 4 seconds (4000 milliseconds)
+            setTimeout(() => {
+                // Make it transparent and move it up slightly
+                errorAlert.style.opacity = '0';
+                errorAlert.style.transform = 'translateY(-10px)';
+                
+                // Remove the element from the DOM after the transition ends (500ms)
+                setTimeout(() => errorAlert.remove(), 500); 
+            }, 4000);
+        }
+    });
+</script>
+{% endblock %}

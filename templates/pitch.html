@@ -1,0 +1,65 @@
+{% extends "index.html" %}
+{% block content %}
+
+<section class="pitch-container">
+    
+    <header class="page-intro">
+        <h2 class="title"><i class="bi bi-lightbulb text-warning"></i> My Project Pitch</h2>
+        <p class="subtitle">Share your idea in up to 280 characters or let others know you're looking for a group</p>
+    </header>
+
+    {% if user.pitch %}
+        <div class="current-pitch">
+            <h3>Your Current Pitch</h3>
+            <p>&ldquo;{{ user.pitch }}&rdquo;</p>
+        </div>
+    {% endif %}
+
+    <form action="/pitch" method="post">
+        <div class="form-group">
+            <label class="form-label" for="pitch-text">
+                {{ 'Edit your pitch' if user.pitch else 'Write your pitch' }}
+            </label>
+            
+            <textarea class="form-input" id="pitch-text" name="text" rows="4" maxlength="280" 
+                      placeholder="'I want to ...'">{{ user.pitch }}</textarea>
+            
+            <div class="char-counter">
+                <span id="char-count">0 / 280</span>
+            </div>
+        </div>
+
+        <div class="pitch-buttons">
+            <button type="submit" name="action" value="save" class="btn-submit">
+                <i class="bi bi-floppy"></i> Save Pitch
+            </button>
+            
+            {% if user.pitch %}
+                <button type="submit" name="action" value="delete" class="btn-delete" 
+                        onclick="return confirm('Are you sure you want to delete your pitch?')">
+                    <i class="bi bi-trash"></i> Delete
+                </button>
+            {% endif %}
+        </div>
+    </form>
+    
+</section>
+
+<script>
+    const textarea = document.getElementById('pitch-text');
+    const counter = document.getElementById('char-count');
+    
+    textarea.addEventListener('input', () => {
+        const len = textarea.value.length;
+        counter.textContent = `${len} / 280`;
+        
+        // Troca a cor dependendo da quantidade de caracteres
+        counter.style.color = len >= 280 ? '#dc2626' : (len > 250 ? '#d97706' : 'var(--medium-gray)');
+        counter.style.fontWeight = len >= 280 ? 'bold' : 'normal';
+    });
+    
+    // Força a contagem atualizar assim que a página carrega
+    textarea.dispatchEvent(new Event('input'));
+</script>
+
+{% endblock %}

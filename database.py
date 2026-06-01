@@ -21,8 +21,7 @@ def init_db():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             github TEXT NOT NULL UNIQUE,
             hash TEXT NOT NULL,
-            timezone TEXT NOT NULL,
-            languages TEXT NOT NULL,
+            country TEXT NOT NULL,
             has_idea TEXT DEFAULT 'no',
             pitch TEXT DEFAULT ''
         )
