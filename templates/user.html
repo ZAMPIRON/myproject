@@ -23,13 +23,17 @@
                 
                 <div class="user-status">
                     {% if user.has_idea == 'yes' %}
-                        <span class="badge-idea">
-                            <i class="bi bi-lightbulb-fill"></i> Has idea
-                        </span>
+                        <div class="badge-idea">
+                            <span>
+                                <i class="bi bi-lightbulb-fill"></i> Has idea
+                            </span>
+                        </div>
                     {% else %}
-                        <span class="badge-join">
-                            <i class="bi bi-person-raised-hand"></i> Looking to join
-                        </span>
+                        <div class="badge-join">
+                            <span>
+                                <i class="bi bi-person-raised-hand"></i> Looking to join
+                            </span>
+                        </div>
                     {% endif %}
                 </div>
             </div>

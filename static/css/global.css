@@ -20,4 +20,6 @@ body {
     --light: #fadddd;        /* Clean background color */
     --white: #FFFFFF;
     --header-color: #212529; /* Darker shade for headers */
+    --light-blue: #e0f2fe;   /* Light blue for "Looking to join" badge */
+    --light-yellow: #fef3c7; /* Light yellow for "Has idea" badge */
 }

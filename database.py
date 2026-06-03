@@ -6,8 +6,7 @@ DATABASE = "buddy.db"
 def get_db():
     # it returns a connection to the database, creating it if it doesn't exist
     if "db" not in g:
-        g.db = sqlite3.connect(DATABASE)
-        # Permite acessar os dados como dicionários (ex: user["github"])
+        g.db = sqlite3.connect(DATABASE) # connect to the database
         g.db.row_factory = sqlite3.Row 
     return g.db
 

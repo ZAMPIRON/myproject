@@ -519,17 +519,11 @@ hr {
 }
 
 .badge-idea {
-    background-color: #fef3c7;
-    color: #d97706;
-}
-
-.badge-idea i {
-    color: #d97706;
+    background-color: var(--light-yellow);
 }
 
 .badge-join {
-    background-color: #e0f2fe;
-    color: #0369a1;
+    background-color: var(--light-blue);
 }
 
 .user-bio {
