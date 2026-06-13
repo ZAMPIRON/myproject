@@ -41,3 +41,31 @@ Initially, SQL queries in the backend used `AS` aliases (e.g., `SELECT country A
 In a list of potential project partners, users need to make quick decisions. I designed the UI to prioritize the "Idea / No Idea" status using distinct colored badges. This design choice prevents users from having to read every single pitch to find what they are looking for, allowing them to visually filter the page in seconds.
 
 Buddy Matcher successfully demonstrates the integration of databases, backend routing, and frontend design, resulting in a practical tool that can help foster collaboration within coding communities.
+
+### Database Schema
+
+The application relies on a lightweight SQLite database (`buddy.db`) to manage user persistence and pairing preferences. The architecture consists of a single, optimized `users` table defined by the following schema:
+
+* **`id`**: `INTEGER PRIMARY KEY AUTOINCREMENT` — A unique, auto-incrementing identifier automatically assigned to each registered student.
+* **`github`**: `TEXT NOT NULL UNIQUE` — Stores the user's GitHub username. The `UNIQUE` constraint ensures no duplicate profiles can be created, maintaining data integrity.
+* **`hash`**: `TEXT NOT NULL` — A secure cryptographic hash of the user's password generated via `werkzeug.security`, ensuring plain-text credentials are never stored.
+* **`country`**: `TEXT NOT NULL` — Captures the user's country location to help other students gauge timezone compatibility for collaboration.
+* **`has_idea`**: `TEXT DEFAULT 'no'` — Tracks whether the user has a project idea or is looking to join one. It defaults to `'no'` to streamline the registration process.
+* **`pitch`**: `TEXT DEFAULT ''` — A text field for the user's project proposal or personal skill set description. It defaults to an empty string so users can update it later.
+
+### How to Run
+
+To run Buddy Matcher locally, follow these steps:
+1. Ensure you have Python installed.
+2. Install Flask and any required dependencies using pip: `pip install Flask` (or via a `requirements.txt` file if applicable).
+3. Initialize the database if necessary, or simply run the application routing.
+4. Execute the Flask server by running: `flask run` in your terminal.
+5. Open your local browser and navigate to `http://1270.0.1:5000/` to interact with the application.
+
+### Future Improvements
+
+While the current version of Buddy Matcher is fully functional for its core purpose, there are several features planned for future iterations to enhance the user experience:
+* **In-App Messaging:** Instead of forcing users to leave the platform to contact each other via GitHub, adding a built-in chat system would allow seamless, instant collaboration.
+* **Advanced Filtering:** Implementing search and filtering tools on the Matches dashboard so users can quickly sort potential partners by specific countries, keywords, or programming skills.
+* **GitHub API Integration:** Fetching and displaying a user's pinned repositories directly onto their card to dynamically showcase their actual coding experience.
+* 
